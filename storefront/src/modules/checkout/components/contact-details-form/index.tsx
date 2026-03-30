@@ -51,7 +51,7 @@ const ContactDetailsForm = ({
   return (
     <div className="flex flex-col small:grid small:grid-cols-2 gap-4">
       <Input
-        label="Email"
+        label="E-mail"
         name="email"
         autoComplete="email"
         value={formData["email"]}
@@ -61,7 +61,7 @@ const ContactDetailsForm = ({
         className="small:col-span-2"
       />
       <Input
-        label="Invoice recipient"
+        label="Destinatário da fatura"
         name="invoice_recipient"
         autoComplete="family-name"
         value={formData["invoice_recipient"]}
@@ -69,21 +69,21 @@ const ContactDetailsForm = ({
         data-testid="invoice-recipient-input"
       />
       <Input
-        label="Cost center"
+        label="Centro de custo"
         name="cost_center"
         value={formData["cost_center"]}
         onChange={handleChange}
         data-testid="cost-center-input"
       />
       <Input
-        label="Requisition number"
+        label="Número de requisição"
         name="requisition_number"
         value={formData["requisition_number"]}
         onChange={handleChange}
         data-testid="requisition-number-input"
       />
       <Input
-        label="Door code/goods mark"
+        label="Código de acesso / marcação"
         name="door_code"
         value={formData["door_code"]}
         onChange={handleChange}
@@ -91,7 +91,7 @@ const ContactDetailsForm = ({
       />
       <div className="col-span-2">
         <Input
-          label="Notes"
+          label="Observações"
           name="notes"
           value={formData["notes"]}
           onChange={handleChange}
@@ -99,8 +99,7 @@ const ContactDetailsForm = ({
           className="small:col-span-2"
         />
         <label className="text-xs italic text-neutral-500">
-          The note will only appear on the invoice and order confirmation and
-          will not be read by the merchant.
+          A observação aparecerá apenas na fatura e na confirmação do pedido.
         </label>
       </div>
     </div>
