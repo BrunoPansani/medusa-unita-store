@@ -1,75 +1,94 @@
 import { retrieveCart } from "@/lib/data/cart"
 import { retrieveCustomer } from "@/lib/data/customer"
+import { listRegions } from "@/lib/data/regions"
 import AccountButton from "@/modules/account/components/account-button"
 import CartButton from "@/modules/cart/components/cart-button"
 import LocalizedClientLink from "@/modules/common/components/localized-client-link"
 import FilePlus from "@/modules/common/icons/file-plus"
-import LogoIcon from "@/modules/common/icons/logo"
-import { MegaMenuWrapper } from "@/modules/layout/components/mega-menu"
+import SideMenu from "@/modules/layout/components/side-menu"
 import { RequestQuoteConfirmation } from "@/modules/quotes/components/request-quote-confirmation"
 import { RequestQuotePrompt } from "@/modules/quotes/components/request-quote-prompt"
 import SkeletonAccountButton from "@/modules/skeletons/components/skeleton-account-button"
 import SkeletonCartButton from "@/modules/skeletons/components/skeleton-cart-button"
-import SkeletonMegaMenu from "@/modules/skeletons/components/skeleton-mega-menu"
 import { Suspense } from "react"
 
 export async function NavigationHeader() {
-  const customer = await retrieveCustomer().catch(() => null)
-  const cart = await retrieveCart()
+  const [customer, cart, regions] = await Promise.all([
+    retrieveCustomer().catch(() => null),
+    retrieveCart(),
+    listRegions(),
+  ])
 
   return (
-    <div className="sticky top-0 inset-x-0 group bg-white text-zinc-900 small:p-4 p-2 text-sm border-b duration-200 border-ui-border-base z-50">
-      <header className="flex w-full content-container relative small:mx-auto justify-between">
-        <div className="small:mx-auto flex justify-between items-center min-w-full">
-          <div className="flex items-center small:space-x-4">
-            <LocalizedClientLink
-              className="hover:text-ui-fg-base flex items-center w-fit"
-              href="/"
-            >
-              <h1 className="small:text-base text-sm font-medium flex items-center">
-                <LogoIcon className="inline mr-2" />
-                Medusa B2B Starter
-              </h1>
-            </LocalizedClientLink>
+    <div className="sticky top-0 inset-x-0 z-50">
+      <header
+        className="h-[72px] mx-auto border-b"
+        style={{
+          backgroundColor: "var(--color-warm-bg)",
+          borderColor: "var(--color-warm-border)",
+        }}
+      >
+        <nav className="content-container flex items-center justify-between w-full h-full">
 
-            <nav>
-              <ul className="space-x-4 hidden small:flex">
-                <li>
-                  <Suspense fallback={<SkeletonMegaMenu />}>
-                    <MegaMenuWrapper />
-                  </Suspense>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className="flex justify-end items-center gap-2">
-            <div className="relative mr-2 hidden small:inline-flex">
-              <input
-                disabled
-                type="text"
-                placeholder="Search for products"
-                className="bg-gray-100 text-zinc-900 px-4 py-2 rounded-full pr-10 shadow-borders-base hidden small:inline-block hover:cursor-not-allowed"
-                title="Install a search provider to enable product search"
-              />
+          {/* Left — Logo (desktop) + SideMenu trigger (mobile) */}
+          <div className="flex items-center gap-x-4 h-full">
+            <div className="small:hidden">
+              <SideMenu regions={regions} />
             </div>
 
-            <div className="h-4 w-px bg-neutral-300" />
+            <LocalizedClientLink
+              href="/"
+              className="hover:opacity-75 transition-opacity"
+              data-testid="nav-store-link"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.svg"
+                alt="Unitá Porcelanas"
+                className="h-7 w-auto"
+              />
+            </LocalizedClientLink>
+          </div>
 
+          {/* Center — main navigation links (desktop only) */}
+          <div className="hidden small:flex items-center gap-x-8">
+            <LocalizedClientLink
+              href="/store"
+              className="text-sm font-medium transition-colors duration-150 hover:opacity-60"
+              style={{ color: "var(--color-ink)" }}
+            >
+              Catálogo
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/account"
+              className="text-sm font-medium transition-colors duration-150 hover:opacity-60"
+              style={{ color: "var(--color-ink)" }}
+              data-testid="nav-account-link"
+            >
+              Minha conta
+            </LocalizedClientLink>
+          </div>
+
+          {/* Right — Quote, Account, Cart */}
+          <div className="flex items-center gap-2 h-full">
             {customer && cart?.items && cart.items.length > 0 ? (
               <RequestQuoteConfirmation>
                 <button
-                  className="flex gap-1.5 items-center rounded-2xl bg-none shadow-none border-none hover:bg-neutral-100 px-2 py-1"
-                  // disabled={isPendingApproval}
+                  className="hidden small:flex gap-1.5 items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:opacity-70"
+                  style={{ color: "var(--color-ink-muted)" }}
                 >
                   <FilePlus />
-                  <span className="hidden small:inline-block">Quote</span>
+                  <span>Orçamento</span>
                 </button>
               </RequestQuoteConfirmation>
             ) : (
               <RequestQuotePrompt>
-                <button className="flex gap-1.5 items-center rounded-2xl bg-none shadow-none border-none hover:bg-neutral-100 px-2 py-1">
+                <button
+                  className="hidden small:flex gap-1.5 items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:opacity-70"
+                  style={{ color: "var(--color-ink-muted)" }}
+                >
                   <FilePlus />
-                  <span className="hidden small:inline-block">Quote</span>
+                  <span>Orçamento</span>
                 </button>
               </RequestQuotePrompt>
             )}
@@ -78,11 +97,23 @@ export async function NavigationHeader() {
               <AccountButton customer={customer} />
             </Suspense>
 
-            <Suspense fallback={<SkeletonCartButton />}>
+            <Suspense
+              fallback={
+                <LocalizedClientLink
+                  className="text-sm font-medium hover:opacity-60 transition-opacity"
+                  style={{ color: "var(--color-ink)" }}
+                  href="/cart"
+                  data-testid="nav-cart-link"
+                >
+                  Carrinho (0)
+                </LocalizedClientLink>
+              }
+            >
               <CartButton />
             </Suspense>
           </div>
-        </div>
+
+        </nav>
       </header>
     </div>
   )

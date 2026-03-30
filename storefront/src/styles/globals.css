@@ -2,6 +2,28 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* ── Unitá Porcelanas — identidade visual ─────────────────────── */
+:root {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Paleta porcelana — tons quentes off-white + terracota */
+  --color-brand:        oklch(0.60 0.20 48);   /* terracota primário  */
+  --color-brand-dark:   oklch(0.44 0.16 46);   /* hover/active        */
+  --color-warm-bg:      oklch(0.968 0.010 82); /* creme quente        */
+  --color-warm-bg-2:    oklch(0.955 0.014 80); /* creme ligeiramente + escuro */
+  --color-warm-border:  oklch(0.905 0.010 78); /* bordas suaves       */
+  --color-ink:          oklch(0.22 0.020 58);  /* texto escuro quente */
+  --color-ink-muted:    oklch(0.48 0.020 58);  /* texto secundário    */
+  --color-ink-subtle:   oklch(0.68 0.012 58);  /* texto suave         */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-warm-bg);
+  color: var(--color-ink);
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -56,6 +78,39 @@
 
   .contrast-btn {
     @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
+  }
+
+  .btn-brand {
+    @apply inline-flex items-center gap-2 px-7 py-3 rounded-full text-white font-medium text-sm tracking-wide transition-all duration-200;
+    background-color: var(--color-brand);
+  }
+
+  .btn-brand:hover {
+    background-color: var(--color-brand-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px oklch(0.60 0.20 48 / 0.35);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-7 py-3 rounded-full font-medium text-sm tracking-wide border transition-all duration-200;
+    border-color: var(--color-warm-border);
+    color: var(--color-ink);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-ink-muted);
+    background-color: oklch(0.22 0.020 58 / 0.05);
+  }
+
+  .section-label {
+    @apply flex items-center gap-3 text-xs font-semibold tracking-[0.12em] uppercase;
+    color: var(--color-brand);
+  }
+
+  .section-label::before {
+    content: '';
+    @apply block w-8 h-px;
+    background-color: var(--color-brand);
   }
 
   .text-xsmall-regular {

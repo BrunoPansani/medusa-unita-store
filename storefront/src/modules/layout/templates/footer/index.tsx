@@ -1,9 +1,8 @@
 import { listCategories } from "@/lib/data/categories"
 import { listCollections } from "@/lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
+import { clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@/modules/common/components/localized-client-link"
-import MedusaCTA from "@/modules/layout/components/medusa-cta"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -16,144 +15,160 @@ export default async function Footer() {
   })
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-              Medusa Store
+    <footer
+      className="w-full border-t"
+      style={{
+        backgroundColor: "var(--color-warm-bg)",
+        borderColor: "var(--color-warm-border)",
+      }}
+    >
+      <div className="content-container">
+        {/* Main footer grid */}
+        <div className="grid grid-cols-2 small:grid-cols-4 gap-10 py-16 small:py-20">
+
+          {/* Brand column */}
+          <div className="col-span-2 small:col-span-1 flex flex-col gap-4">
+            <LocalizedClientLink href="/" className="hover:opacity-75 transition-opacity w-fit">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="Unitá Porcelanas" className="h-6 w-auto" />
             </LocalizedClientLink>
+            <p
+              className="text-sm leading-relaxed max-w-[200px]"
+              style={{ color: "var(--color-ink-muted)" }}
+            >
+              Canecas de porcelana para atacado e revenda. Fábrica própria em Pedreira, SP.
+            </p>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {product_categories && product_categories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul
-                  className="grid grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
-                  {product_categories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
 
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
+          {/* Categories */}
+          {product_categories && product_categories.length > 0 && (
+            <div className="flex flex-col gap-4">
+              <span
+                className="text-xs font-semibold uppercase tracking-wider"
+                style={{ color: "var(--color-ink)" }}
+              >
+                Categorias
+              </span>
+              <ul className="flex flex-col gap-2" data-testid="footer-categories">
+                {product_categories.slice(0, 6).map((c) => {
+                  if (c.parent_category) return null
+                  const children = c.category_children?.map((child) => ({
+                    name: child.name,
+                    handle: child.handle,
+                    id: child.id,
+                  })) || null
 
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )}
-            {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {collections?.slice(0, 6).map((c) => (
-                    <li key={c.id}>
+                  return (
+                    <li key={c.id} className="flex flex-col gap-1">
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/collections/${c.handle}`}
+                        href={`/categories/${c.handle}`}
+                        className={clx(
+                          "text-sm transition-opacity hover:opacity-60",
+                          children && "font-medium"
+                        )}
+                        style={{ color: "var(--color-ink-muted)" }}
+                        data-testid="category-link"
                       >
-                        {c.title}
+                        {c.name}
                       </LocalizedClientLink>
+                      {children && (
+                        <ul className="flex flex-col gap-1 ml-3">
+                          {children.map((child) => (
+                            <li key={child.id}>
+                              <LocalizedClientLink
+                                href={`/categories/${child.handle}`}
+                                className="text-sm transition-opacity hover:opacity-60"
+                                style={{ color: "var(--color-ink-subtle)" }}
+                              >
+                                {child.name}
+                              </LocalizedClientLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
-                <li>
-                  <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/medusajs/b2b-starter-medusa"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Source code
-                  </a>
-                </li>
+                  )
+                })}
               </ul>
             </div>
+          )}
+
+          {/* Collections */}
+          {collections && collections.length > 0 && (
+            <div className="flex flex-col gap-4">
+              <span
+                className="text-xs font-semibold uppercase tracking-wider"
+                style={{ color: "var(--color-ink)" }}
+              >
+                Coleções
+              </span>
+              <ul className="flex flex-col gap-2">
+                {collections.slice(0, 6).map((c) => (
+                  <li key={c.id}>
+                    <LocalizedClientLink
+                      href={`/collections/${c.handle}`}
+                      className="text-sm transition-opacity hover:opacity-60"
+                      style={{ color: "var(--color-ink-muted)" }}
+                    >
+                      {c.title}
+                    </LocalizedClientLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Contact */}
+          <div className="flex flex-col gap-4">
+            <span
+              className="text-xs font-semibold uppercase tracking-wider"
+              style={{ color: "var(--color-ink)" }}
+            >
+              Contato
+            </span>
+            <ul className="flex flex-col gap-2">
+              <li>
+                <a
+                  href="https://wa.me/5519971690272"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm transition-opacity hover:opacity-60"
+                  style={{ color: "var(--color-ink-muted)" }}
+                >
+                  WhatsApp (19) 97169-0272
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:comercial@unitaporcelanas.com.br"
+                  className="text-sm transition-opacity hover:opacity-60"
+                  style={{ color: "var(--color-ink-muted)" }}
+                >
+                  comercial@unitaporcelanas.com.br
+                </a>
+              </li>
+              <li
+                className="text-sm"
+                style={{ color: "var(--color-ink-subtle)" }}
+              >
+                Pedreira, SP — CEP 13920-306
+              </li>
+            </ul>
           </div>
+
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
-          </Text>
-          <MedusaCTA />
+
+        {/* Bottom bar */}
+        <div
+          className="flex items-center justify-between py-6 border-t"
+          style={{ borderColor: "var(--color-warm-border)" }}
+        >
+          <p className="text-xs" style={{ color: "var(--color-ink-subtle)" }}>
+            © {new Date().getFullYear()} Unitá Porcelanas. Todos os direitos reservados.
+          </p>
+          <p className="text-xs hidden small:block" style={{ color: "var(--color-ink-subtle)" }}>
+            Pedreira, SP — Capital da Porcelana
+          </p>
         </div>
       </div>
     </footer>
