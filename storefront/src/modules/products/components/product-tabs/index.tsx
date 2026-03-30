@@ -12,11 +12,11 @@ type ProductTabsProps = {
 const ProductTabs = ({ product }: ProductTabsProps) => {
   const tabs = [
     {
-      label: "Description",
+      label: "Descrição",
       component: <ProductSpecsTab product={product} />,
     },
     {
-      label: "Specifications",
+      label: "Especificações",
       component: <ProductSpecificationsTab product={product} />,
     },
   ]
@@ -26,7 +26,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       <Accordion type="multiple" className="flex flex-col gap-y-2">
         {tabs.map((tab, i) => (
           <Accordion.Item
-            className="bg-neutral-100 small:px-24 px-6"
+            className="small:px-0 px-0"
             key={i}
             title={tab.label}
             headingSize="medium"
@@ -46,15 +46,25 @@ const ProductSpecsTab = ({ product }: ProductTabsProps) => {
       <Markdown
         components={{
           p: ({ children }) => (
-            <Text className="text-neutral-950 mb-2">{children}</Text>
+            <Text style={{ color: "var(--color-ink)" }} className="mb-2">
+              {children}
+            </Text>
           ),
           h2: ({ children }) => (
-            <Text className="text-xl text-neutral-950 my-4 font-semibold">
+            <Text
+              className="text-xl my-4 font-semibold"
+              style={{ color: "var(--color-ink)" }}
+            >
               {children}
             </Text>
           ),
           h3: ({ children }) => (
-            <Text className="text-lg text-neutral-950 mb-2">{children}</Text>
+            <Text
+              className="text-lg mb-2"
+              style={{ color: "var(--color-ink)" }}
+            >
+              {children}
+            </Text>
           ),
         }}
       >
@@ -67,22 +77,45 @@ const ProductSpecsTab = ({ product }: ProductTabsProps) => {
 const ProductSpecificationsTab = ({ product }: ProductTabsProps) => {
   return (
     <div className="text-small-regular py-8">
-      <Table className="rounded-lg shadow-borders-base overflow-hidden border-none">
+      <Table
+        className="rounded-xl overflow-hidden border-none"
+        style={{ borderColor: "var(--color-warm-border)" }}
+      >
         <Table.Body>
           {product.weight && (
             <Table.Row>
-              <Table.Cell className="border-r">
-                <span className="font-semibold">Weight</span>
+              <Table.Cell
+                className="border-r"
+                style={{
+                  borderColor: "var(--color-warm-border)",
+                  color: "var(--color-ink-muted)",
+                }}
+              >
+                <span className="font-semibold">Peso</span>
               </Table.Cell>
-              <Table.Cell className="px-4">{product.weight} grams</Table.Cell>
+              <Table.Cell
+                className="px-4"
+                style={{ color: "var(--color-ink)" }}
+              >
+                {product.weight} g
+              </Table.Cell>
             </Table.Row>
           )}
           {(product.height || product.width || product.length) && (
             <Table.Row>
-              <Table.Cell className="border-r">
-                <span className="font-semibold">Dimensions (HxWxL)</span>
+              <Table.Cell
+                className="border-r"
+                style={{
+                  borderColor: "var(--color-warm-border)",
+                  color: "var(--color-ink-muted)",
+                }}
+              >
+                <span className="font-semibold">Dimensões (AxLxP)</span>
               </Table.Cell>
-              <Table.Cell className="px-4">
+              <Table.Cell
+                className="px-4"
+                style={{ color: "var(--color-ink)" }}
+              >
                 {product.height}mm x {product.width}mm x {product.length}mm
               </Table.Cell>
             </Table.Row>
@@ -91,10 +124,19 @@ const ProductSpecificationsTab = ({ product }: ProductTabsProps) => {
           {product.metadata &&
             Object.entries(product.metadata).map(([key, value]) => (
               <Table.Row key={key}>
-                <Table.Cell className="border-r">
+                <Table.Cell
+                  className="border-r"
+                  style={{
+                    borderColor: "var(--color-warm-border)",
+                    color: "var(--color-ink-muted)",
+                  }}
+                >
                   <span className="font-semibold">{key}</span>
                 </Table.Cell>
-                <Table.Cell className="px-4">
+                <Table.Cell
+                  className="px-4"
+                  style={{ color: "var(--color-ink)" }}
+                >
                   <p>{value as string}</p>
                 </Table.Cell>
               </Table.Row>

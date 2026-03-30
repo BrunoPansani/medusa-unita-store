@@ -38,12 +38,13 @@ export default async function CheckoutForm({
     <div>
       <div className="w-full grid grid-cols-1 gap-y-2">
         <LocalizedClientLink
-          className="flex items-baseline gap-2 text-sm text-neutral-400 hover:text-neutral-500"
+          className="flex items-baseline gap-2 text-sm hover:opacity-70"
+          style={{ color: "var(--color-ink-muted)" }}
           href="/cart"
         >
           <Button variant="secondary">
             <UTurnArrowRight />
-            Back to shopping cart
+            Voltar ao carrinho
           </Button>
         </LocalizedClientLink>
 

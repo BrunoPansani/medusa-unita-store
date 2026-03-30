@@ -8,7 +8,6 @@ import SignInPrompt from "@/modules/cart/components/sign-in-prompt"
 import ItemsTemplate from "@/modules/cart/templates/items"
 import Summary from "@/modules/cart/templates/summary"
 import { B2BCustomer } from "@/types/global"
-import { Heading } from "@medusajs/ui"
 import { useMemo } from "react"
 
 const CartTemplate = ({ customer }: { customer: B2BCustomer | null }) => {
@@ -25,17 +24,27 @@ const CartTemplate = ({ customer }: { customer: B2BCustomer | null }) => {
   )
 
   return (
-    <div className="small:py-12 py-6 bg-neutral-100">
+    <div
+      className="small:py-12 py-6"
+      style={{ backgroundColor: "var(--color-warm-bg)" }}
+    >
       <div className="content-container" data-testid="cart-container">
         {cart?.items?.length ? (
           <div>
             <div className="flex flex-col py-6 gap-y-6">
               <div className="pb-3 flex items-center">
-                <Heading className="text-neutral-950">
-                  You have {totalItems} items in your cart
-                </Heading>
+                <h1
+                  className="text-2xl font-normal"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    color: "var(--color-ink)",
+                  }}
+                >
+                  Você tem {totalItems}{" "}
+                  {totalItems === 1 ? "item" : "itens"} no carrinho
+                </h1>
               </div>
-              <div className="grid grid-cols-1 small:grid-cols-[1fr_360px] gap-2">
+              <div className="grid grid-cols-1 small:grid-cols-[1fr_360px] gap-6">
                 <div className="flex flex-col gap-y-2">
                   {!customer && <SignInPrompt />}
                   {cart?.approvals && cart.approvals.length > 0 && (

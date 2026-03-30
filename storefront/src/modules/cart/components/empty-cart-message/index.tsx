@@ -1,5 +1,4 @@
-import InteractiveLink from "@/modules/common/components/interactive-link"
-import { Heading, Text } from "@medusajs/ui"
+import LocalizedClientLink from "@/modules/common/components/localized-client-link"
 
 const EmptyCartMessage = () => {
   return (
@@ -7,19 +6,22 @@ const EmptyCartMessage = () => {
       className="py-48 px-2 flex flex-col justify-center items-start"
       data-testid="empty-cart-message"
     >
-      <Heading
-        level="h1"
-        className="flex flex-row text-3xl-regular gap-x-2 items-baseline"
+      <h1
+        className="text-3xl font-normal mb-4"
+        style={{ fontFamily: "var(--font-serif)", color: "var(--color-ink)" }}
       >
-        Cart
-      </Heading>
-      <Text className="text-base-regular mt-4 mb-6 max-w-[32rem]">
-        You don&apos;t have anything in your cart. Let&apos;s change that, use
-        the link below to start browsing our products.
-      </Text>
-      <div>
-        <InteractiveLink href="/store">Explore products</InteractiveLink>
-      </div>
+        Carrinho
+      </h1>
+      <p
+        className="text-base mt-4 mb-6 max-w-[32rem]"
+        style={{ color: "var(--color-ink-muted)" }}
+      >
+        Seu carrinho está vazio. Que tal explorar nosso catálogo de canecas de
+        porcelana?
+      </p>
+      <LocalizedClientLink href="/store" className="btn-brand">
+        Explorar produtos
+      </LocalizedClientLink>
     </div>
   )
 }

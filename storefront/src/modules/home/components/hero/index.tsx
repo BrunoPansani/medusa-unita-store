@@ -114,42 +114,41 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right — decorative panel */}
+          {/* Right — product image panel */}
           <div
-            className="hidden small:flex items-center justify-center rounded-2xl overflow-hidden relative"
+            className="hidden small:block rounded-2xl overflow-hidden relative"
             style={{
-              backgroundColor: "var(--color-warm-bg-2)",
               border: "1px solid var(--color-warm-border)",
               minHeight: "520px",
             }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hero-image.jpg"
+              alt="Canecas Unitá Porcelanas"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Overlay */}
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage:
-                  "radial-gradient(circle at 2px 2px, oklch(0.60 0.20 48 / 0.08) 1.5px, transparent 0)",
-                backgroundSize: "24px 24px",
+                background:
+                  "linear-gradient(to top, oklch(0.22 0.020 58 / 0.55) 0%, transparent 50%)",
               }}
             />
-            <div className="relative z-10 flex flex-col items-center gap-6 px-12 text-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.svg"
-                alt=""
-                className="h-24 w-auto"
-                style={{ opacity: 0.15 }}
-              />
+            {/* Caption */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col gap-2">
               <p
                 className="text-sm font-medium tracking-wide uppercase"
-                style={{ color: "var(--color-brand)", letterSpacing: "0.1em" }}
+                style={{ color: "oklch(0.968 0.010 82)", letterSpacing: "0.1em" }}
               >
                 Pedido mínimo · 12 unidades
               </p>
               <p
-                className="text-xs max-w-[220px] leading-relaxed"
-                style={{ color: "var(--color-ink-subtle)" }}
+                className="text-xs max-w-[240px] leading-relaxed"
+                style={{ color: "oklch(0.905 0.010 78)" }}
               >
-                Entregamos para todo o Brasil com embalagem segura e parceria com transportadoras.
+                Entregamos para todo o Brasil com embalagem segura.
               </p>
             </div>
           </div>

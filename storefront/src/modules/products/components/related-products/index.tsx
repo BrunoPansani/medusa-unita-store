@@ -1,7 +1,6 @@
 import { listProducts } from "@/lib/data/products"
 import { getRegion } from "@/lib/data/regions"
 import { HttpTypes } from "@medusajs/types"
-import { Heading } from "@medusajs/ui"
 import Product from "../product-preview"
 
 type RelatedProductsProps = {
@@ -19,7 +18,6 @@ export default async function RelatedProducts({
     return null
   }
 
-  // edit this function to define your related products logic
   const queryParams: HttpTypes.StoreProductParams & {
     tags?: string[]
   } = {}
@@ -50,17 +48,20 @@ export default async function RelatedProducts({
   }
 
   return (
-    <div className="flex flex-col gap-y-6 small:py-16 py-6 small:px-24 px-6 bg-neutral-100">
-      <Heading level="h2" className="text-xl text-neutral-950 font-normal">
-        Other customers also viewed
-      </Heading>
-      <ul className="grid grid-cols-1 small:grid-cols-3 medium:grid-cols-4 gap-x-2 gap-y-8">
-        {products.map((product) => (
-          <li key={product.id}>
-            <Product region={region} product={product} />
-          </li>
-        ))}
-      </ul>
+    <div
+      className="content-container py-16 small:py-20"
+      style={{ backgroundColor: "var(--color-warm-bg)" }}
+    >
+      <div className="flex flex-col gap-8">
+        <span className="section-label">Você também pode gostar</span>
+        <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-4 small:gap-6">
+          {products.map((product) => (
+            <li key={product.id}>
+              <Product region={region} product={product} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

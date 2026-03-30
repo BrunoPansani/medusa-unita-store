@@ -11,8 +11,8 @@ import { Suspense } from "react"
 export const dynamicParams = true
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Explore all of our products.",
+  title: "Catálogo",
+  description: "Explore todos os nossos produtos.",
 }
 
 type Params = {
@@ -37,7 +37,7 @@ export default async function StorePage(props: Params) {
   const customer = await retrieveCustomer()
 
   return (
-    <div className="bg-neutral-100">
+    <div style={{ backgroundColor: "var(--color-warm-bg)" }}>
       <div
         className="flex flex-col py-6 content-container gap-4"
         data-testid="category-container"
@@ -60,4 +60,3 @@ export default async function StorePage(props: Params) {
     </div>
   )
 }
-;``

@@ -26,13 +26,22 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   }
 
   return (
-    <div className="flex flex-col gap-y-2 my-2">
+    <div
+      className="flex flex-col"
+      style={{ backgroundColor: "var(--color-warm-bg)" }}
+    >
       <div
-        className="content-container grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-fit"
+        className="content-container grid grid-cols-1 md:grid-cols-2 gap-0 w-full"
         data-testid="product-container"
       >
         <ImageGallery product={product} />
-        <div className="flex flex-col bg-neutral-100 w-full gap-6 items-start justify-center small:p-20 p-6 h-full">
+        <div
+          className="flex flex-col w-full gap-6 items-start justify-center small:p-16 p-6 h-full"
+          style={{
+            backgroundColor: "var(--color-warm-bg-2)",
+            borderLeft: "1px solid var(--color-warm-border)",
+          }}
+        >
           <ProductInfo product={product} />
           <Suspense
             fallback={<ProductActions product={product} region={region} />}
@@ -42,11 +51,17 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           <ProductFacts product={product} />
         </div>
       </div>
-      <div className="content-container">
-        <ProductTabs product={product} />
+      <div
+        className="border-t"
+        style={{ borderColor: "var(--color-warm-border)" }}
+      >
+        <div className="content-container py-8">
+          <ProductTabs product={product} />
+        </div>
       </div>
       <div
-        className="content-container"
+        className="border-t"
+        style={{ borderColor: "var(--color-warm-border)" }}
         data-testid="related-products-container"
       >
         <Suspense fallback={<SkeletonRelatedProducts />}>
