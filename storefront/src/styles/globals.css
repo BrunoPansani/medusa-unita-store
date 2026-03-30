@@ -71,6 +71,28 @@ body {
   }
 }
 
+/* ── Override Medusa UI token colors to match brand ────────────── */
+:root {
+  /* Surface tokens */
+  --medusa-bg-base: var(--color-warm-bg);
+  --medusa-bg-subtle: var(--color-warm-bg-2);
+  --medusa-bg-field: #ffffff;
+  --medusa-bg-component: var(--color-warm-bg-2);
+  /* Border tokens */
+  --medusa-border-base: var(--color-warm-border);
+  --medusa-border-strong: oklch(0.84 0.012 76);
+  /* Foreground tokens */
+  --medusa-fg-base: var(--color-ink);
+  --medusa-fg-subtle: var(--color-ink-muted);
+  --medusa-fg-muted: var(--color-ink-subtle);
+  /* Interactive */
+  --medusa-fg-interactive: var(--color-brand);
+  --medusa-fg-interactive-hover: var(--color-brand-dark);
+  /* Button primary */
+  --medusa-button-inverted: var(--color-brand);
+  --medusa-button-inverted-hover: var(--color-brand-dark);
+}
+
 @layer components {
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-6;
