@@ -25,36 +25,35 @@ const RemoveEmployeePrompt = ({ employee }: { employee: QueryEmployee }) => {
   const handleRemove = async () => {
     setIsRemoving(true)
     await deleteEmployee(employee.company_id, employee.id).catch(() => {
-      toast.error("Error deleting employee")
+      toast.error("Erro ao deletar funcionário")
     })
     setIsRemoving(false)
 
-    toast.success("Employee deleted")
+    toast.success("Funcionário deletado")
   }
 
   return (
     <Prompt variant="danger">
       <Prompt.Trigger asChild>
-        <Button variant="transparent">Remove</Button>
+        <Button variant="transparent">Remover</Button>
       </Prompt.Trigger>
       <Prompt.Content>
         <Prompt.Header>
-          <Prompt.Title>Remove Employee</Prompt.Title>
+          <Prompt.Title>Remover funcionário</Prompt.Title>
           <Prompt.Description>
-            Are you sure you want to remove{" "}
-            <strong>{employee.customer.email}</strong> from your team? They will
-            no longer be able to purchase on behalf of your company.
+            Tem certeza que deseja remover{" "}
+            <strong>{employee.customer.email}</strong> do seu time? Ele não poderá mais fazer compras em nome de sua empresa.
           </Prompt.Description>
         </Prompt.Header>
         <Prompt.Footer>
           <Prompt.Cancel className="h-10 rounded-full shadow-borders-base">
-            Cancel
+            Cancelar
           </Prompt.Cancel>
           <Prompt.Action
             className="h-10 px-4 rounded-full shadow-none"
             onClick={handleRemove}
           >
-            Remove
+            Remover
           </Prompt.Action>
         </Prompt.Footer>
       </Prompt.Content>
@@ -92,13 +91,13 @@ const Employee = ({
 
     setIsSaving(true)
     await updateEmployee(updateData as StoreUpdateEmployee).catch(() => {
-      toast.error("Error updating employee")
+      toast.error("Erro ao atualizar funcionário")
     })
 
     setIsSaving(false)
     setIsEditing(false)
 
-    toast.success("Employee updated")
+    toast.success("Funcionário atualizado")
   }
 
   const spent = getOrderTotalInSpendWindow(orders, getSpendWindow(company)) || 0
@@ -110,7 +109,7 @@ const Employee = ({
         <div className="flex flex-col">
           <Text className=" text-neutral-950 font-medium">
             {employee.customer.first_name} {employee.customer.last_name}{" "}
-            {isCurrentUser && "(You)"}{" "}
+            {isCurrentUser && "(Você)"}{" "}
             {employee.is_admin && (
               <>
                 {" • "}
@@ -144,14 +143,14 @@ const Employee = ({
                 onClick={() => setIsEditing(false)}
                 disabled={isSaving}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
                 onClick={handleSubmit}
                 isLoading={isSaving}
               >
-                Save
+                Salvar
               </Button>
             </>
           ) : (
@@ -161,7 +160,7 @@ const Employee = ({
                 variant="secondary"
                 onClick={() => setIsEditing((prev) => !prev)}
               >
-                Edit
+                Editar
               </Button>
             </>
           )}

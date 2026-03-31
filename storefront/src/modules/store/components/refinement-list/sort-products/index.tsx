@@ -40,7 +40,7 @@ const SortProducts = ({
       <div className="relative">
         <select
           className="w-full pr-8 overflow-hidden focus:outline-none appearance-none"
-          title="Sort by"
+          title="Ordenar por"
           value={sortBy}
           onChange={(e) => handleChange(e.target.value as SortOptions)}
           data-testid={dataTestId}

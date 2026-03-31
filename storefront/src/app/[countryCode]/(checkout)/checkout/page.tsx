@@ -9,6 +9,7 @@ import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Checkout",
+  description: "Proceder com sua compra",
 }
 
 export default async function Checkout({
