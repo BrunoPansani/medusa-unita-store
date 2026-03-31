@@ -24,7 +24,7 @@ const QuoteCard = ({ quote }: QuoteCardProps) => {
   )
 
   return (
-    <Container className="bg-white flex small:flex-row flex-col p-4 rounded-md small:justify-between small:items-center gap-y-2 items-start">
+    <Container className="flex small:flex-row flex-col p-4 rounded-md small:justify-between small:items-center gap-y-2 items-start">
       <div className="flex gap-x-4 items-center pl-3">
         <div className="flex">
           {order.items?.slice(0, 3).map((item, index) => {

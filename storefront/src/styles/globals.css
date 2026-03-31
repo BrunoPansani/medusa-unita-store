@@ -74,23 +74,25 @@ body {
 /* ── Override Medusa UI token colors to match brand ────────────── */
 :root {
   /* Surface tokens */
-  --medusa-bg-base: var(--color-warm-bg);
-  --medusa-bg-subtle: var(--color-warm-bg-2);
-  --medusa-bg-field: #ffffff;
-  --medusa-bg-component: var(--color-warm-bg-2);
+  --bg-base: oklch(0.968 0.010 82);
+  --bg-subtle: oklch(0.955 0.014 80);
+  --bg-field: #ffffff;
+  --bg-component: oklch(0.955 0.014 80);
+  --bg-field-component: #ffffff;
   /* Border tokens */
-  --medusa-border-base: var(--color-warm-border);
-  --medusa-border-strong: oklch(0.84 0.012 76);
+  --border-base: oklch(0.905 0.010 78);
+  --border-strong: oklch(0.84 0.012 76);
   /* Foreground tokens */
-  --medusa-fg-base: var(--color-ink);
-  --medusa-fg-subtle: var(--color-ink-muted);
-  --medusa-fg-muted: var(--color-ink-subtle);
+  --fg-base: oklch(0.22 0.020 58);
+  --fg-subtle: oklch(0.48 0.020 58);
+  --fg-muted: oklch(0.68 0.012 58);
   /* Interactive */
-  --medusa-fg-interactive: var(--color-brand);
-  --medusa-fg-interactive-hover: var(--color-brand-dark);
+  --fg-interactive: oklch(0.60 0.20 48);
+  --fg-interactive-hover: oklch(0.44 0.16 46);
   /* Button primary */
-  --medusa-button-inverted: var(--color-brand);
-  --medusa-button-inverted-hover: var(--color-brand-dark);
+  --button-inverted: oklch(0.60 0.20 48);
+  --button-inverted-hover: oklch(0.44 0.16 46);
+  --button-inverted-pressed: oklch(0.38 0.14 44);
 }
 
 @layer components {

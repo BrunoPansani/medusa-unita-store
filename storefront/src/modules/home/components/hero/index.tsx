@@ -124,7 +124,7 @@ const Hero = () => {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/hero-image.jpg"
+              src="/shots/caneca_hamsa_lifestyle.webp"
               alt="Canecas Unitá Porcelanas"
               className="absolute inset-0 w-full h-full object-cover"
             />

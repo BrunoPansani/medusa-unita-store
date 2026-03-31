@@ -23,7 +23,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
 
   return (
     <>
-      <Container className="bg-white flex small:flex-row flex-col p-4 rounded-md small:justify-between small:items-center gap-y-2 items-start">
+      <Container className="flex small:flex-row flex-col p-4 rounded-md small:justify-between small:items-center gap-y-2 items-start">
         <div className="flex gap-x-4 items-center pl-3">
           <div className="flex min-w-10">
             {order.items?.slice(0, 3).map((i, index) => {

@@ -11,14 +11,14 @@ const BackgroundImage = () => {
 
   useEffect(() => {
     const img = new window.Image()
-    img.src = "/login-banner-bg.png"
+    img.src = "/shots/caneca_e_sobre_isso_escritorio.webp"
     img.onload = () => setImageLoaded(true)
   }, [])
 
   return (
     <div className="relative w-full h-full transition-opacity duration-300">
       <Image
-        src="/login-banner-bg.png"
+        src="/shots/caneca_e_sobre_isso_escritorio.webp"
         alt="Login banner background"
         className={clx(
           "absolute inset-0 object-cover object-center w-full h-full transition-opacity duration-300",
