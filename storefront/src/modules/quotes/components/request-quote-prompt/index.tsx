@@ -33,23 +33,23 @@ export const RequestQuotePrompt = ({
                   Entrar
                 </LocalizedClientLink>
               </Dialog.Close>
-              {" or "}
+              {" ou "}
               <Dialog.Close>
                 <LocalizedClientLink
                   className="text-blue-500 cursor-pointer"
                   href="/account"
                 >
-                  create an account
+                  criar uma conta
                 </LocalizedClientLink>
               </Dialog.Close>
             </li>
-            <li>Add products to your cart</li>
+            <li>Adicione produtos ao carrinho</li>
             <li>
-              Open cart & click {'"'}Request a quote{'"'}
+              Abra o carrinho e clique em {'"'}Solicitar orçamento{'"'}
             </li>
           </ol>
 
-          <p>We will then get back to you as soon as possible over email</p>
+          <p>Entraremos em contato por e-mail o mais breve possível.</p>
         </div>
       </Dialog.Content>
     </Dialog.Portal>

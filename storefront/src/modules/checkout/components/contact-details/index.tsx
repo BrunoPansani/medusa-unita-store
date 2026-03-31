@@ -142,7 +142,7 @@ const ContactDetails = ({
                   <div>
                     <Divider />
                     <Text className="txt-medium text-ui-fg-subtle pt-2">
-                      Note: {cart.metadata?.notes as string}
+                      Obs: {cart.metadata?.notes as string}
                     </Text>
                   </div>
                 ) : null}

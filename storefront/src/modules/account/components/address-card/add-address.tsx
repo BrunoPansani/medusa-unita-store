@@ -1,6 +1,6 @@
 "use client"
 
-import { addCustomerAddress } from "@/lib/data/customer"
+import { addCustomerEndereço } from "@/lib/data/customer"
 import useToggleState from "@/lib/hooks/use-toggle-state"
 import CountrySelect from "@/modules/checkout/components/country-select"
 import { SubmitButton } from "@/modules/checkout/components/submit-button"
@@ -12,11 +12,11 @@ import { HttpTypes } from "@medusajs/types"
 import { Heading } from "@medusajs/ui"
 import { useActionState, useEffect, useState } from "react"
 
-const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
+const AddEndereço = ({ region }: { region: HttpTypes.StoreRegion }) => {
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
 
-  const [formState, formAction] = useActionState(addCustomerAddress, {
+  const [formState, formAction] = useActionState(addCustomerEndereço, {
     success: false,
     error: null,
   })
@@ -74,34 +74,34 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                 />
               </div>
               <Input
-                label="Company"
+                label="Empresa"
                 name="company"
                 autoComplete="organization"
                 data-testid="company-input"
               />
               <Input
-                label="Address"
+                label="Endereço"
                 name="address_1"
                 required
                 autoComplete="address-line1"
                 data-testid="address-1-input"
               />
               <Input
-                label="Apartment, suite, etc."
+                label="Complemento"
                 name="address_2"
                 autoComplete="address-line2"
                 data-testid="address-2-input"
               />
               <div className="grid grid-cols-[144px_1fr] gap-x-2">
                 <Input
-                  label="Postal code"
+                  label="CEP"
                   name="postal_code"
                   required
                   autoComplete="postal-code"
                   data-testid="postal-code-input"
                 />
                 <Input
-                  label="City"
+                  label="Cidade"
                   name="city"
                   required
                   autoComplete="locality"
@@ -109,7 +109,7 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                 />
               </div>
               <Input
-                label="Province / State"
+                label="Estado"
                 name="province"
                 autoComplete="address-level1"
                 data-testid="state-input"
@@ -122,7 +122,7 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                 data-testid="country-select"
               />
               <Input
-                label="Phone"
+                label="Telefone"
                 name="phone"
                 autoComplete="phone"
                 data-testid="phone-input"
@@ -146,9 +146,9 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
                 className="h-10"
                 data-testid="cancel-button"
               >
-                Cancel
+                Cancelar
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton data-testid="save-button">Salvar</SubmitButton>
             </div>
           </Modal.Footer>
         </form>
@@ -157,4 +157,4 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
   )
 }
 
-export default AddAddress
+export default AddEndereço

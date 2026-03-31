@@ -127,7 +127,7 @@ const QuoteMessages = ({
                   <Select {...field} onValueChange={onChange} value={value}>
                     <Select.Trigger className="bg-ui-bg-base" ref={ref}>
                       <Select.Value />
-                      {value ? <Select.Value /> : "Select Item"}
+                      {value ? <Select.Value /> : "Selecionar item"}
                     </Select.Trigger>
 
                     <Select.Content>

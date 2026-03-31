@@ -27,7 +27,7 @@ export const RequestQuoteConfirmation = ({
       router.push(`/${countryCode}/account/quotes/details/${quote.id}`)
     } catch (error) {
       setRequesting(false)
-      toast.error("Failed to create quote request")
+      toast.error("Erro ao criar solicitação de orçamento")
     }
 
     setOpen(false)
@@ -57,12 +57,12 @@ export const RequestQuoteConfirmation = ({
           <div className="mt-[25px] flex justify-end gap-x-2">
             <Dialog.Close asChild>
               <Button variant="secondary" disabled={requesting}>
-                Cancel
+                Cancelar
               </Button>
             </Dialog.Close>
 
             <Button onClick={handleCreateQuoteRequest} isLoading={requesting}>
-              Submit
+              Enviar
             </Button>
           </div>
         </Dialog.Content>
