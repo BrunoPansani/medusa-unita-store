@@ -131,7 +131,7 @@ const CartDrawer = ({
                     amount: subtotal,
                     currency_code: cart.currency_code,
                   })
-                : "Cart"}
+                : "Carrinho"}
             </span>
             <div className="bg-blue-500 text-white text-xs px-1.5 py-px rounded-full">
               {totalItems}
@@ -145,8 +145,8 @@ const CartDrawer = ({
           <Drawer.Header className="flex self-center">
             <Drawer.Title>
               {totalItems > 0
-                ? `You have ${totalItems} items in your cart`
-                : "Your cart is empty"}
+                ? `Você tem ${totalItems} ${totalItems === 1 ? "item" : "itens"} no carrinho`
+                : "Seu carrinho está vazio"}
             </Drawer.Title>
           </Drawer.Header>
           {cart?.approvals && cart.approvals.length > 0 && (
@@ -191,7 +191,7 @@ const CartDrawer = ({
                         className="w-full"
                         size="large"
                       >
-                        View Cart
+                        Ver Carrinho
                       </Button>
                     </LocalizedClientLink>
                     <LocalizedClientLink href={checkoutPath}>
@@ -203,17 +203,16 @@ const CartDrawer = ({
                         <LockClosedSolidMini />
                         {customer
                           ? spendLimitExceeded
-                            ? "Spending Limit Exceeded"
-                            : "Secure Checkout"
-                          : "Log in to checkout"}
+                            ? "Limite de Gastos Excedido"
+                            : "Checkout Seguro"
+                          : "Faça login para fazer checkout"}
                       </Button>
                     </LocalizedClientLink>
                     {spendLimitExceeded && (
                       <div className="flex items-center gap-x-2 bg-neutral-100 p-3 rounded-md shadow-borders-base">
                         <ExclamationCircle className="text-orange-500 w-fit overflow-visible" />
                         <p className="text-neutral-950 text-xs">
-                          This order exceeds your spending limit. Please contact
-                          your manager for approval.
+                          Este pedido excede seu limite de gastos. Contate seu gerente para aprovação.
                         </p>
                       </div>
                     )}

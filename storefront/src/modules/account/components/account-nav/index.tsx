@@ -129,7 +129,7 @@ const AccountNav = ({
                   >
                     <div className="flex items-center gap-x-2">
                       <FilePlus size={16} />
-                      <span>Quotes</span>
+                      <span>Orçamentos</span>
                     </div>
                     <ChevronDown className="transform -rotate-90" />
                   </LocalizedClientLink>

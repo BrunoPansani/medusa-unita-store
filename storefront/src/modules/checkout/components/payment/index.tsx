@@ -199,7 +199,7 @@ const Payment = ({
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Gift card
+                Vale-presente
               </Text>
             </div>
           )}
@@ -268,7 +268,7 @@ const Payment = ({
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Gift card
+                Vale-presente
               </Text>
             </div>
           ) : null}
